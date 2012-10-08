@@ -46,8 +46,9 @@ public class StrictPojoProxy {
 				return values.get(getAttributeName(method));
 			} else if (method.getName().equals(METHOD_TOSTRING)) {
 				return String.format(TOSTRING_FORMAT, proxyInterface.getName(), values);
+			} else {
+				throw new IllegalArgumentException("Unknwon method: [" + method + "]");
 			}
-			return null;
 		}
 		
 		private String getAttributeName(Method method) {
