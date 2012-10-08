@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Proxy;
 
@@ -54,6 +55,57 @@ public class SimpleStrictPojoProxyTest {
 		String testValue = "testValue";
 		proxy.setStringValue(testValue);
 		assertThat(proxy.toString(), is(strictFormatMatching(proxy)));
+	}
+
+	@Test
+	public void sameInstancesAreEqual() {
+		String testValue = "testValue";
+		proxy.setStringValue(testValue);
+		assertThat(proxy.equals(proxy), is(true));
+	}
+	
+	@Test
+	public void comparingToNullIsNotEqual() {
+		String testValue = "testValue";
+		proxy.setStringValue(testValue);
+		assertThat(proxy.equals(null), is(false));
+	}
+	
+	@Test
+	public void comparingToDifferentObjectIsNotEqual() {
+		String testValue = "testValue";
+		proxy.setStringValue(testValue);
+		assertThat(proxy.equals(new Object()), is(false));
+	}
+	
+	@Test
+	public void comparingToEqualProxyIsEqual() {
+		fail();
+	}
+	
+	@Test
+	public void comparingToObjectImplementingInterfaceWithSameValuesIsEqual() {
+		fail();
+	}
+	
+	@Test
+	public void methodCallToStringWithWrongSignature() {
+		fail();
+	}
+	
+	@Test
+	public void methodCallEqualsWithWrongSignature() {
+		fail();
+	}
+	
+	@Test
+	public void methodCallSetterWithWrongSignature() {
+		fail();
+	}		
+	
+	@Test
+	public void methodCallGetterWithWrongSignature() {
+		fail();
 	}
 
 }

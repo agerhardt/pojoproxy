@@ -18,6 +18,8 @@ public class StrictPojoProxy {
 	protected static class PojoInvocationHandler implements InvocationHandler {
 
 		private static final String METHOD_TOSTRING = "toString";
+		
+		private static final String METHOD_EQUALS = "equals";
 
 		private static final String PREFIX_SET = "set";
 
@@ -46,11 +48,18 @@ public class StrictPojoProxy {
 				return values.get(getAttributeName(method));
 			} else if (method.getName().equals(METHOD_TOSTRING)) {
 				return String.format(TOSTRING_FORMAT, proxyInterface.getName(), values);
+			} else if (method.getName().equals(METHOD_EQUALS)) {
+				return compare(args[0]);
 			} else {
 				throw new IllegalArgumentException("Unknwon method: [" + method + "]");
 			}
 		}
 		
+		private boolean compare(Object object) {
+			// TODO Auto-generated method stub
+			return true;
+		}
+
 		private String getAttributeName(Method method) {
 			String name = method.getName();
 			return Character.toLowerCase(name.charAt(3)) + name.substring(4);
