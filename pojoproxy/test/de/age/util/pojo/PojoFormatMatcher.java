@@ -66,6 +66,7 @@ public class PojoFormatMatcher extends BaseMatcher<String> {
 		description.appendText("expecting " + attributes.toString());
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static PojoFormatMatcher strictFormatMatching(Object proxy) {
 		if (!Proxy.isProxyClass(proxy.getClass())) {
 			throw new IllegalArgumentException("Not a proxy");
