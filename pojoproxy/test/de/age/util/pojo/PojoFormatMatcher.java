@@ -71,8 +71,8 @@ public class PojoFormatMatcher extends BaseMatcher<String> {
 			throw new IllegalArgumentException("Not a proxy");
 		}
 		InvocationHandler handler = Proxy.getInvocationHandler(proxy);
-		if (handler instanceof StrictPojoProxy.PojoInvocationHandler) {
-			StrictPojoProxy.PojoInvocationHandler pojoHandler = (StrictPojoProxy.PojoInvocationHandler) handler;
+		if (handler instanceof PojoInvocationHandler) {
+			PojoInvocationHandler pojoHandler = (PojoInvocationHandler) handler;
 			return new PojoFormatMatcher(pojoHandler.getValues());
 		} else {
 			throw new IllegalArgumentException("Wrong invocationhandler");
