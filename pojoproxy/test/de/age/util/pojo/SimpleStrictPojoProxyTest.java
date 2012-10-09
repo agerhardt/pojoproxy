@@ -21,6 +21,20 @@ public class SimpleStrictPojoProxyTest {
 		
 		public void setStringValue(String aValue);
 	}
+	
+	private static class SimpleImplementation implements SimplePojoInterface {
+
+		private String stringValue;
+
+		public String getStringValue() {
+			return stringValue;
+		}
+
+		public void setStringValue(String stringValue) {
+			this.stringValue = stringValue;
+		}
+				
+	}
 
 	private SimplePojoInterface proxy;
 	
@@ -97,10 +111,13 @@ public class SimpleStrictPojoProxyTest {
 		assertThat(proxy.equals(anotherProxy), is(false));
 	}
 	
-	@Ignore
 	@Test
 	public void comparingToObjectImplementingInterfaceWithSameValuesIsEqual() {
-		fail();
+		String testValue = "testValue";
+		proxy.setStringValue(testValue);
+		SimpleImplementation impl = new SimpleImplementation();
+		impl.setStringValue(testValue);
+		assertThat(proxy.equals(impl), is(true));
 	}
 	
 	@Ignore
