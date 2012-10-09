@@ -120,28 +120,4 @@ public class SimpleStrictPojoProxyTest {
 		assertThat(proxy.equals(impl), is(true));
 	}
 	
-	@Ignore
-	@Test
-	public void methodCallToStringWithWrongSignature() {
-		fail();
-	}
-	
-	@Ignore
-	@Test
-	public void methodCallEqualsWithWrongSignature() {
-		fail();
-	}
-	
-	@Ignore
-	@Test
-	public void methodCallSetterWithWrongSignature() {
-		fail();
-	}		
-	
-	@Ignore
-	@Test
-	public void methodCallGetterWithWrongSignature() {
-		fail();
-	}
-
 }
